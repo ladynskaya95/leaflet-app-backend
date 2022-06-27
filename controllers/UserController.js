@@ -36,7 +36,7 @@ export const register = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Не удалось зарегистрироваться",
+      message: "Не вдалось зареєструватися",
     });
   }
 };
@@ -46,7 +46,7 @@ export const login = async (req, res) => {
     const user = await UserModel.findOne({ email: req.body.email });
     if (!user) {
       return res.status(404).json({
-        message: "Пользователь не найден",
+        message: "Користувач не знайдений",
       });
     }
     const isValidPass = await bcrypt.compare(
@@ -55,7 +55,7 @@ export const login = async (req, res) => {
     );
     if (!isValidPass) {
       return res.status(403).json({
-        message: "Неверный логин или пароль",
+        message: "Невірний логін або пароль",
       });
     }
     const token = jwt.sign(
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Не удалось авторизоваться",
+      message: "Не вдалось авторизуватись",
     });
   }
 };
@@ -84,7 +84,7 @@ export const getMe = async (req, res) => {
 
     if (!user) {
       return res.status(404).json({
-        message: "Пользователь не найден",
+        message: "Користувач не знайдений",
       });
     }
 
@@ -94,7 +94,7 @@ export const getMe = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Нет доступа",
+      message: "Немає доступу",
     });
   }
 };
